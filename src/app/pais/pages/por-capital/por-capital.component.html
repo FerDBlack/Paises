@@ -1,0 +1,26 @@
+<div class="animate__animated animate__fadeInDown">
+  <h2>Por Capital</h2>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <!--Aquí se manda el evento emitido al buscar de por pais-->
+      <app-pais-input
+        (onEnter)="buscar($event)"
+        placeholder="Buscar capital...">
+
+      </app-pais-input>
+    </div>
+  </div>
+  <hr>
+  <div *ngIf="error"
+       class="alert alert-danger"
+  >
+    <p>No se encontró nada con {{termino}}</p>
+  </div>
+
+  <div *ngIf="resultadosPaises.length > 0" class="row">
+    <div class="col">
+      <app-pais-tabla [resultadosPaises]="resultadosPaises"></app-pais-tabla>
+    </div>
+  </div>
+</div>

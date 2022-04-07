@@ -1,0 +1,37 @@
+<div class="animate__animated animate__fadeInDown">
+<h3>Buscar por región <small>{{regionActiva | titlecase}}</small></h3>
+<hr>
+<h5>Seleccione la región</h5>
+
+<div class="row">
+  <div class="col">
+
+    <!--Para cambiar la cale de forma dinámica:
+     1- [class.btn-primary]="region === regionActiva"
+     2- [ngClass]="{
+                 'btn-primary':regionActiva === region,
+                 'btn-outline-primary':regionActiva !== region
+            }"
+      3- y recomendado, es realizar un método para separar la lógica-->
+    <button [class]="estiloCss(region)"
+            id="buttonRegiones"
+            *ngFor="let region of regiones"
+            (click)="activarRegion(region)">
+
+      {{region | titlecase }}
+    </button>
+  </div>
+</div>
+
+<div *ngIf="error"
+     class="alert alert-danger"
+>
+  <p>No se encontró nada con {{this.regionActiva}}</p>
+</div>
+
+<div *ngIf="resultadosPaises.length > 0" class="row">
+  <div class="col">
+    <app-pais-tabla [resultadosPaises]="resultadosPaises"></app-pais-tabla>
+  </div>
+</div>
+</div>
